@@ -1,17 +1,19 @@
+import LoginForm from "../components/LoginForm"
+
 export default function LoginPage() {
 	return (
 		<>
 			<div className="w-full h-screen bg-inherit">
 				<div className="flex justify-center items-center w-full h-full mt-8 pb-5">
 					{/* Promo image */}
-					<div>
+					<div className="hidden md:block">
 						<img src="/auth.png" alt="Promo Image" />
 					</div>
 
 					{/* Sign in form */}
 					<div className="flex flex-col items-center">
 						{/* Form placeholder */}
-						<h1>Login form</h1>
+						<LoginForm />
 						<section className="container flex flex-col items-center gap-4">
 							<h1>Get the app.</h1>
 							<div className="flex gap-2">
