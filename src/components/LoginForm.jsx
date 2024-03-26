@@ -1,7 +1,23 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
-	const [isLogin, setIsLogin] = useState(true)
+	const [isLogin, setIsLogin] = useState(true);
+	const [inputs, setInputs] = useState({
+		email: "",
+		password: "",
+		confirmPassword: "",
+	});
+	const navigate = useNavigate();
+
+	const handleLogin = () => {
+		if (!inputs.email || !inputs.password) {
+			alert("Please fill out all fields");
+			return;
+		}
+
+		navigate("/");
+	};
 
 	return (
 		<div className="w-[350px]">
@@ -19,6 +35,8 @@ export default function LoginForm() {
 						name="email"
 						id="email"
 						placeholder="Email"
+						value={inputs.email}
+						onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 					/>
 					<input
 						className="border rounded-sm placeholder:text-slate-400 p-1 my-2"
@@ -26,19 +44,26 @@ export default function LoginForm() {
 						name="password"
 						id="password"
 						placeholder="Password"
+						value={inputs.password}
+						onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 					/>
 					{!isLogin ? (
 						<input
 							className="border rounded-sm placeholder:text-slate-400 p-1 mb-2"
 							type="password"
-							name="password"
-							id="password"
+							name="confirm password"
+							id="confirmPassword"
 							placeholder="Confirm Password"
+							value={inputs.confirmPassword}
+							onChange={(e) =>
+								setInputs({ ...inputs, confirmPassword: e.target.value })
+							}
 						/>
 					) : null}
 
 					<button
 						className="rounded-md bg-sky-400 text-white p-1 my-2"
+						onClick={handleLogin}
 						type="submit"
 					>
 						{isLogin ? "Log in" : "Sign up"}
@@ -77,5 +102,5 @@ export default function LoginForm() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
