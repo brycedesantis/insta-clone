@@ -61,7 +61,7 @@ export default function Sidebar() {
 								to={item.link || null}
 								className="flex items-center gap-4 p-2 justify-center w-10 lg:w-full lg:justify-start"
 							>
-								{item.icon}
+								<div className="group-hover:scale-105">{item.icon}</div>
 								<div className="hidden lg:block">{item.text}</div>
 							</Link>
 							<span className="block lg:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
@@ -77,7 +77,7 @@ export default function Sidebar() {
 						to={"/login"}
 						className="flex items-center gap-4 p-2 justify-center w-10 lg:w-full lg:justify-start"
 					>
-						<BiLogOut className="size-6" />
+						<BiLogOut className="size-6 group-hover:scale-105" />
 						<div className="hidden lg:block">Logout</div>
 					</Link>
 					<span className="block lg:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
