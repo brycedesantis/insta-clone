@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Postheader() {
+export default function Postheader({ img, username }) {
 	const [following, setFollowing] = useState(true);
 
 	return (
@@ -8,12 +8,12 @@ export default function Postheader() {
 			<div className="flex justify-between items-center py-3 text-xs mt-2">
 				<div className="flex items-center">
 					<img
-						className="size-9 rounded-full ring-2 ring-rose-500 ring-offset-1"
-						src="./img1.png"
-						alt=""
+						className="size-9 rounded-full ring-2 ring-rose-500 ring-offset-1 object-cover"
+						src={img}
+						alt={`${username}'s profile picture`}
 					/>
 					<div className="flex items-center gap-1">
-						<p className="font-bold pl-2">jane_doe</p>
+						<p className="font-bold pl-2">{username}</p>
 						<p>• 1w</p>
 					</div>
 				</div>

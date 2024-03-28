@@ -1,14 +1,14 @@
 import Postfooter from "./Postfooter";
 import Postheader from "./Postheader";
 
-export default function Feedpost() {
+export default function Feedpost({ img, username }) {
 	return (
 		<>
-			<Postheader />
+			<Postheader username={username} img={img} />
 			<div className="rounded overflow-hidden">
-				<img src="../img1.png" alt="" />
+				<img src={img} alt={`${username}'s picture`} />
 			</div>
-			<Postfooter />
+			<Postfooter username={username} />
 		</>
 	);
 }
