@@ -43,10 +43,10 @@ export default function Sidebar() {
 	return (
 		<div className="h-screen border-r py-7 sticky top-0 left-0 px-2 md:px-4">
 			<div className="flex flex-col gap-10 h-full w-full">
-				<Link to={"/"} className="pl-2 hidden lg:block">
+				<Link to={"/"} className="pl-2 hidden xl:block">
 					<InstagramLogo />
 				</Link>
-				<Link to={"/"} className="p-2 block lg:hidden w-10 hover:scale-110">
+				<Link to={"/"} className="p-2 block xl:hidden w-10 hover:scale-110">
 					<InstagramMobileLogo />
 				</Link>
 
@@ -59,12 +59,12 @@ export default function Sidebar() {
 						>
 							<Link
 								to={item.link || null}
-								className="flex items-center gap-4 p-2 justify-center w-10 lg:w-full lg:justify-start"
+								className="flex items-center gap-4 p-2 justify-center w-10 xl:w-full xl:justify-start"
 							>
 								<div className="group-hover:scale-105">{item.icon}</div>
-								<div className="hidden lg:block">{item.text}</div>
+								<div className="hidden xl:block">{item.text}</div>
 							</Link>
-							<span className="block lg:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
+							<span className="block xl:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
 								{item.text}
 							</span>
 						</div>
@@ -75,12 +75,12 @@ export default function Sidebar() {
 				<div className="group relative flex gap-5 mt-auto">
 					<Link
 						to={"/login"}
-						className="flex items-center gap-4 p-2 justify-center w-10 lg:w-full lg:justify-start"
+						className="flex items-center gap-4 p-2 justify-center w-10 xl:w-full xl:justify-start"
 					>
 						<BiLogOut className="size-6 group-hover:scale-105" />
-						<div className="hidden lg:block">Logout</div>
+						<div className="hidden xl:block">Logout</div>
 					</Link>
-					<span className="block lg:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
+					<span className="block xl:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
 						Logout
 					</span>
 				</div>

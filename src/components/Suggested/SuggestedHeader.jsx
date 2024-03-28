@@ -5,7 +5,7 @@ export default function SuggestedHeader() {
 		<div className="flex justify-between items-center py-2">
 			<div className="flex items-center">
 				<img
-					className="size-9 rounded-full object-cover"
+					className="size-10 rounded-full object-cover"
 					src="./profilepic.png"
 					alt="user profile picture"
 				/>
@@ -13,7 +13,10 @@ export default function SuggestedHeader() {
 				<p className="font-bold text-sm pl-2">brycedesant</p>
 			</div>
 			<div>
-				<Link to={"/login"} className="text-blue-500 text-sm hover:text-black">
+				<Link
+					to={"/login"}
+					className="text-blue-500 text-sm font-semibold hover:text-black"
+				>
 					Log out
 				</Link>
 			</div>

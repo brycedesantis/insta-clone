@@ -20,7 +20,7 @@ export default function Postheader({ img, username }) {
 				<div className="">
 					<button
 						onClick={() => setFollowing(!following)}
-						className="text-blue-500 text-sm hover:text-black"
+						className="text-blue-500 text-sm font-semibold hover:text-black"
 					>
 						{following ? "Unfollow" : "Follow"}
 					</button>

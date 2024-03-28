@@ -46,7 +46,7 @@ export default function Postfooter({ username }) {
 						name=""
 						placeholder="Add a comment..."
 					></textarea>
-					<span className="cursor-pointer mr-2 text-blue-500 text-sm hover:text-black">
+					<span className="cursor-pointer mr-2 text-blue-500 text-sm font-semibold hover:text-black">
 						Post
 					</span>
 				</div>
