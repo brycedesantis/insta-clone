@@ -5,7 +5,7 @@ export default function Postheader() {
 
 	return (
 		<>
-			<div className="flex justify-between items-center py-3 text-xs">
+			<div className="flex justify-between items-center py-3 text-xs mt-2">
 				<div className="flex items-center">
 					<img
 						className="size-9 rounded-full ring-2 ring-rose-500 ring-offset-1"
@@ -13,7 +13,7 @@ export default function Postheader() {
 						alt=""
 					/>
 					<div className="flex items-center gap-1">
-						<p className="font-bold pl-2">Jane Doe</p>
+						<p className="font-bold pl-2">jane_doe</p>
 						<p>• 1w</p>
 					</div>
 				</div>

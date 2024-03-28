@@ -1,13 +1,14 @@
+import Postfooter from "./Postfooter";
 import Postheader from "./Postheader";
 
 export default function Feedpost() {
 	return (
 		<>
 			<Postheader />
-			<div>
+			<div className="rounded overflow-hidden">
 				<img src="../img1.png" alt="" />
 			</div>
-			<h1>Post Footer</h1>
+			<Postfooter />
 		</>
 	);
 }
