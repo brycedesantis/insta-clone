@@ -1,4 +1,5 @@
 import Feedposts from "../components/FeedComponents/Feedposts";
+import SuggestedSection from "../components/Suggested/SuggestedSection";
 
 export default function HomePage() {
 	return (
@@ -7,8 +8,8 @@ export default function HomePage() {
 				<div className="flex justify-center max-w-2xl w-full py-10">
 					<Feedposts />
 				</div>
-				<div className="border border-red-500 hidden lg:block max-w-72 w-full mr-20">
-					suggestions section
+				<div className="hidden lg:block max-w-72 w-full mr-20">
+					<SuggestedSection />
 				</div>
 			</div>
 		</div>
