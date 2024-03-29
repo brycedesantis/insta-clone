@@ -4,11 +4,11 @@ import ProfileTabs from "../components/ProfilePage/ProfileTabs";
 
 export default function ProfilePage() {
 	return (
-		<div className="max-w-4xl pt-8 px-5 border mx-auto">
-			<div className="w-full flex justify-center py-7">
+		<div className="max-w-4xl w-full pt-8 px-5 border mx-auto">
+			<div className="w-full flex justify-start py-7">
 				<ProfileHeader />
 			</div>
-			<div className="w-full border-t">
+			<div className="w-full flex justify-center border-t">
 				<ProfileTabs />
 			</div>
 			<div className="w-full">
