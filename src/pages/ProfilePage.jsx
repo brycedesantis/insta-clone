@@ -8,7 +8,7 @@ export default function ProfilePage() {
 			<div className="w-full flex justify-start py-7">
 				<ProfileHeader />
 			</div>
-			<div className="w-full flex justify-center border-t">
+			<div className="w-full border-t">
 				<ProfileTabs />
 			</div>
 			<div className="w-full">
