@@ -5,7 +5,7 @@ import {
 	UnlikeLogo,
 } from "../../assets/constants";
 
-export default function Postfooter({ username }) {
+export default function Postfooter({ username, profilePage }) {
 	const [likeStatus, setLikeStatus] = useState(false);
 	const [likeCount, setLikeCount] = useState(100);
 
@@ -32,13 +32,17 @@ export default function Postfooter({ username }) {
 					</div>
 				</div>
 				<div className="text-sm">{likeCount} likes</div>
-				<p className="text-xs font-bold cursor-pointer">
-					{username}
-					<span className="font-normal pl-1 cursor-auto">New headshot</span>
-				</p>
-				<p className="text-sm text-gray-400 cursor-pointer w-fit">
-					View all 56 comments
-				</p>
+				{!profilePage && (
+					<>
+						<p className="text-xs font-bold cursor-pointer">
+							{username}
+							<span className="font-normal pl-1 cursor-auto">New headshot</span>
+						</p>
+						<p className="text-sm text-gray-400 cursor-pointer w-fit">
+							View all 56 comments
+						</p>
+					</>
+				)}
 
 				<div className="flex">
 					<textarea

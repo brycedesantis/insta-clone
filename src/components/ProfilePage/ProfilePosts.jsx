@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ProfileImages from "./ProfileImages";
 
 export default function ProfilePosts() {
