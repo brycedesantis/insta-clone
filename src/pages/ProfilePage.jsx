@@ -4,7 +4,7 @@ import ProfileTabs from "../components/ProfilePage/ProfileTabs";
 
 export default function ProfilePage() {
 	return (
-		<div className="max-w-4xl w-full pt-8 px-5 border mx-auto">
+		<div className="max-w-5xl w-full pt-8 px-5 mx-auto">
 			<div className="w-full flex justify-start py-7">
 				<ProfileHeader />
 			</div>
