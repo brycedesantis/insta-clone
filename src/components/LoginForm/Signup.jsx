@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { AiOutlineLoading } from "react-icons/ai";
+import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword";
 
 export default function Signup() {
 	const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +11,7 @@ export default function Signup() {
 		email: "",
 		password: "",
 	});
+	const { loading, error, signup } = useSignUpWithEmailAndPassword();
 
 	return (
 		<>
@@ -63,10 +66,15 @@ export default function Signup() {
 				</span>
 			</div>
 			<button
-				className="rounded-md bg-sky-400 text-white p-1 my-2"
+				onClick={() => signup(inputs)}
+				className="flex justify-center rounded-md bg-sky-400 text-white p-1 my-2"
 				type="submit"
 			>
-				Sign up
+				{loading ? (
+					<AiOutlineLoading className="animate-spin size-5 my-1" />
+				) : (
+					"Sign Up"
+				)}
 			</button>
 		</>
 	);
