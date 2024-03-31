@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { AiOutlineLoading } from "react-icons/ai";
+import { BiErrorCircle } from "react-icons/bi";
 import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword";
 
 export default function Signup() {
@@ -65,6 +66,14 @@ export default function Signup() {
 					</span>
 				</span>
 			</div>
+
+			{error && (
+				<div className="bg-red-100 flex items-center">
+					<BiErrorCircle className="fill-red-300 size-9 mx-1" />
+					<div className=" p-2">{error.message}</div>
+				</div>
+			)}
+
 			<button
 				onClick={() => signup(inputs)}
 				className="flex justify-center rounded-md bg-sky-400 text-white p-1 my-2"

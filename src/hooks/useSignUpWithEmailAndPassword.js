@@ -3,7 +3,7 @@ import { auth, firestore } from "../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function useSignUpWithEmailAndPassword() {
-	const [createUserWithEmailAndPassword, user, loading, error] =
+	const [createUserWithEmailAndPassword, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 
 	const signup = async (inputs) => {
