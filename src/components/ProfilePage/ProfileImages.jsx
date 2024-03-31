@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { FaHeart, FaComment } from "react-icons/fa";
-import Comment from "../Comments/Comment";
-import Postfooter from "../FeedComponents/Postfooter";
 import ProfileModal from "../Modal/ProfileModal";
 
 export default function ProfileImages({ img }) {
