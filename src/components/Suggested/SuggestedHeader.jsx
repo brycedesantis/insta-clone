@@ -6,6 +6,8 @@ export default function SuggestedHeader() {
 	const { handleLogout } = useLogout();
 	const loginUser = useLoginStore((state) => state.user);
 
+	if (!loginUser) return null;
+
 	return (
 		<div className="flex justify-between items-center py-2">
 			<Link to={`${loginUser.username}`} className="flex items-center">

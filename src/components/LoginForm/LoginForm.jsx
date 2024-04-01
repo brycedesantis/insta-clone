@@ -34,7 +34,7 @@ export default function LoginForm() {
 					</div>
 
 					{/* Alt Login Section */}
-					<GoogleLogin />
+					<GoogleLogin prefix={isLogin ? "Log in" : "Sign up"} />
 				</div>
 
 				{/* Signup subsection */}
