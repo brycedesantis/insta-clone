@@ -1,10 +1,12 @@
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, firestore } from "../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import useLoginStore from "../store/loginStore";
 
 export default function useSignUpWithEmailAndPassword() {
 	const [createUserWithEmailAndPassword, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
+	const loginUser = useLoginStore((state) => state.login);
 
 	const signup = async (inputs) => {
 		if (
@@ -43,6 +45,7 @@ export default function useSignUpWithEmailAndPassword() {
 
 				await setDoc(doc(firestore, "users", newUser.user.uid), userInfo);
 				localStorage.setItem("userInfo", JSON.stringify(userInfo));
+				loginUser(userInfo);
 			}
 		} catch (error) {
 			console.log(error);

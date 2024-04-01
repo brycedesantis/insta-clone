@@ -8,6 +8,7 @@ import {
 } from "../assets/constants";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import useLogout from "../hooks/useLogout";
 
 export default function Sidebar() {
 	const sidebarItems = [
@@ -41,6 +42,8 @@ export default function Sidebar() {
 		},
 	];
 
+	const { handleLogout, isLoggingOut } = useLogout();
+
 	return (
 		<div className="h-screen border-r py-7 sticky top-0 left-0 px-2 md:px-4">
 			<div className="flex flex-col gap-10 h-full w-full">
@@ -73,14 +76,14 @@ export default function Sidebar() {
 				</div>
 
 				{/* log out button */}
-				<div className="group relative flex gap-5 mt-auto">
-					<Link
-						to={"/login"}
-						className="flex items-center gap-4 p-2 justify-center w-10 xl:w-full xl:justify-start"
-					>
+				<div
+					onClick={handleLogout}
+					className="group relative flex gap-5 mt-auto cursor-pointer"
+				>
+					<div className="flex items-center gap-4 p-2 justify-center w-10 xl:w-full xl:justify-start">
 						<BiLogOut className="size-6 group-hover:scale-105" />
 						<div className="hidden xl:block">Logout</div>
-					</Link>
+					</div>
 					<span className="block xl:hidden absolute border top-0 left-12 scale-0 transition-all rounded bg-white p-2 text-xs text-black group-hover:scale-100">
 						Logout
 					</span>
