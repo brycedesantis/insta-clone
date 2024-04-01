@@ -38,7 +38,7 @@ export default function Sidebar() {
 				/>
 			),
 			text: "Profile",
-			link: "/:user",
+			link: "/:username",
 		},
 	];
 

@@ -1,24 +1,33 @@
 import { Link } from "react-router-dom";
+import useLogout from "../../hooks/useLogout";
+import useLoginStore from "../../store/loginStore";
 
 export default function SuggestedHeader() {
+	const { handleLogout } = useLogout();
+	const loginUser = useLoginStore((state) => state.user);
+
 	return (
 		<div className="flex justify-between items-center py-2">
-			<div className="flex items-center">
+			<Link to={`${loginUser.username}`} className="flex items-center">
 				<img
-					className="size-10 rounded-full object-cover"
-					src="./profilepic.png"
+					className="size-12 rounded-full object-cover"
+					src={
+						loginUser.profilePicture === ""
+							? "./avatar-placeholder.png"
+							: `${loginUser.profilePicture}`
+					}
 					alt="user profile picture"
 				/>
 
-				<p className="font-bold text-sm pl-2">brycedesant</p>
-			</div>
+				<p className="font-bold text-sm pl-2">{loginUser.username}</p>
+			</Link>
 			<div>
-				<Link
-					to={"/login"}
-					className="text-blue-500 text-sm font-semibold hover:text-black"
+				<div
+					onClick={handleLogout}
+					className="text-blue-500 text-sm font-semibold hover:text-black cursor-pointer"
 				>
 					Log out
-				</Link>
+				</div>
 			</div>
 		</div>
 	);
