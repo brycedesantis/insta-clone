@@ -3,10 +3,11 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import BaseLayout from "./Layout/BaseLayout";
 import ProfilePage from "./pages/ProfilePage";
-import useLoginStore from "./store/loginStore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase/firebase";
 
 function App() {
-	const loginUser = useLoginStore((state) => state.user);
+	const [loginUser] = useAuthState(auth);
 
 	return (
 		<BaseLayout>
@@ -19,7 +20,7 @@ function App() {
 					path="/login"
 					element={!loginUser ? <LoginPage /> : <Navigate to="/" />}
 				/>
-				<Route path="/:user" element={<ProfilePage />} />
+				<Route path="/:username" element={<ProfilePage />} />
 			</Routes>
 		</BaseLayout>
 	);

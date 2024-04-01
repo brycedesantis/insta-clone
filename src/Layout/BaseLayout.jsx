@@ -6,12 +6,12 @@ import Navbar from "../components/Navbar/Navbar";
 
 export default function BaseLayout({ children }) {
 	const { pathname } = useLocation();
-	const [user, loading, error] = useAuthState(auth);
+	const [user, loading] = useAuthState(auth);
 	const renderSidebar = pathname !== "/login" && user;
 	const renderNavbar = !user && !loading && pathname !== "/login";
 
 	return (
-		<div className={"flex" + (renderNavbar ? "flex-col" : "flex-row")}>
+		<div className={"flex " + (renderNavbar ? "flex-col" : "flex-row")}>
 			{/* Sidebar */}
 			{renderSidebar ? (
 				<div className="w-[70px] xl:w-60">
