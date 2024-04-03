@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import useLoginStore from "../../store/loginStore";
 import useUserProfileStore from "../../store/userProfileStore";
+import useFollowAndUnfollowUser from "../../hooks/useFollowAndUnfollowUser";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function ProfileHeader() {
 	const { userProfile } = useUserProfileStore();
 	const loginUser = useLoginStore((state) => state.user);
+	const { isFollowing, isUpdating, handleFollowUser } =
+		useFollowAndUnfollowUser(userProfile?.userId);
+
 	const visitingOwnProfile =
 		loginUser && loginUser.username === userProfile.username;
 	const visitingAnotherProfile =
@@ -30,8 +35,15 @@ export default function ProfileHeader() {
 						</Link>
 					)}
 					{visitingAnotherProfile && (
-						<button className="bg-sky-500 p-2 hover:bg-sky-600 text-white py-1 px-5 rounded-lg">
-							Follow
+						<button
+							onClick={handleFollowUser}
+							className="bg-sky-500 p-2 hover:bg-sky-600 text-white py-1 px-5 rounded-lg"
+						>
+							{isUpdating ? (
+								<AiOutlineLoading className="animate-spin size-5 my-1" />
+							) : (
+								`${isFollowing ? "Unfollow" : "Follow"}`
+							)}
 						</button>
 					)}
 				</div>
