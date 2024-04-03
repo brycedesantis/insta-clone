@@ -9,7 +9,7 @@ export default function HomePage() {
 					<Feedposts />
 				</div>
 				<div className="hidden lg:block max-w-80 w-full mr-20">
-					{/* <SuggestedSection /> */}
+					<SuggestedSection />
 				</div>
 			</div>
 		</div>

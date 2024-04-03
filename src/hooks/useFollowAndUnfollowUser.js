@@ -33,12 +33,14 @@ const useFollowAndUnfollowUser = (userId) => {
 					...loginUser,
 					following: loginUser.following.filter((uid) => uid !== userId),
 				});
-				setUserProfile({
-					...userProfile,
-					followers: userProfile.followers.filter(
-						(uid) => uid !== loginUser.userId
-					),
-				});
+
+				if (userProfile)
+					setUserProfile({
+						...userProfile,
+						followers: userProfile.followers.filter(
+							(uid) => uid !== loginUser.userId
+						),
+					});
 
 				localStorage.setItem(
 					"userInfo",
@@ -54,10 +56,12 @@ const useFollowAndUnfollowUser = (userId) => {
 					...loginUser,
 					following: [...loginUser.following, userId],
 				});
-				setUserProfile({
-					...userProfile,
-					followers: [...userProfile.followers, loginUser.userId],
-				});
+
+				if (userProfile)
+					setUserProfile({
+						...userProfile,
+						followers: [...userProfile.followers, loginUser.userId],
+					});
 
 				localStorage.setItem(
 					"userInfo",
