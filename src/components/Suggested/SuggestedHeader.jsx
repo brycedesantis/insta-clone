@@ -13,11 +13,7 @@ export default function SuggestedHeader() {
 			<Link to={`${loginUser.username}`} className="flex items-center">
 				<img
 					className="size-12 rounded-full object-cover"
-					src={
-						loginUser.profilePicture === ""
-							? "./avatar-placeholder.png"
-							: `${loginUser.profilePicture}`
-					}
+					src={`${loginUser.profilePicture}`}
 					alt="user profile picture"
 				/>
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useLoginStore from "../../store/loginStore";
 import useUserProfileStore from "../../store/userProfileStore";
 
@@ -12,12 +13,8 @@ export default function ProfileHeader() {
 	return (
 		<>
 			<img
-				className="size-36 mr-8 rounded-full object-cover"
-				src={
-					userProfile.profilePicture === ""
-						? "./avatar-placeholder.png"
-						: `${userProfile.profilePicture}`
-				}
+				className="size-32 mr-8 rounded-full object-cover"
+				src={`${userProfile.profilePicture}`}
 				alt="profile picture"
 			/>
 
@@ -25,9 +22,12 @@ export default function ProfileHeader() {
 				<div className="flex items-center gap-6">
 					<h1 className="text-xl">{userProfile.username}</h1>
 					{visitingOwnProfile && (
-						<button className="hover:bg-gray-200 py-1 px-5 rounded-lg">
+						<Link
+							to={"/edit"}
+							className="hover:bg-gray-200 py-1 px-5 rounded-lg"
+						>
 							Edit profile
-						</button>
+						</Link>
 					)}
 					{visitingAnotherProfile && (
 						<button className="bg-sky-500 p-2 hover:bg-sky-600 text-white py-1 px-5 rounded-lg">
