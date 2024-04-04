@@ -1,6 +1,12 @@
 import { BsTrash } from "react-icons/bs";
 import Comment from "../Comments/Comment";
 import Postfooter from "../FeedComponents/Postfooter";
+import { useState } from "react";
+import { deleteObject, ref } from "firebase/storage";
+import { firestore, storage } from "../../firebase/firebase";
+import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import usePostStore from "../../store/postStore";
+import useUserProfileStore from "../../store/userProfileStore";
 
 export default function ProfileModal({
 	isOpen,
@@ -9,10 +15,36 @@ export default function ProfileModal({
 	userProfile,
 	loginUser,
 }) {
+	const [isDeleting, setIsDeleting] = useState(false);
+	const deletePost = usePostStore((state) => state.deletePost);
+	const lowerPostCount = useUserProfileStore((state) => state.deletePost);
+
 	if (!isOpen) return null;
 
 	const handleClose = (e) => {
 		if (e.target.id === "wrapper") onClose();
+	};
+
+	const handleDeletePost = async () => {
+		if (!window.confirm("Are you sure you want to delete this post?")) return;
+		if (isDeleting) return;
+
+		try {
+			const imageRef = ref(storage, `posts/${post.id}`);
+			await deleteObject(imageRef);
+			const userRef = doc(firestore, "users", loginUser.userId);
+			await deleteDoc(doc(firestore, "posts", post.id));
+			await updateDoc(userRef, {
+				posts: arrayRemove(post.id),
+			});
+
+			deletePost(post.id);
+			lowerPostCount(post.id);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsDeleting(false);
+		}
 	};
 
 	return (
@@ -52,7 +84,10 @@ export default function ProfileModal({
 									</h1>
 								</div>
 								{loginUser?.userId === userProfile.userId && (
-									<BsTrash className=" cursor-pointer hover:scale-110 hover:fill-red-400" />
+									<BsTrash
+										onClick={handleDeletePost}
+										className=" cursor-pointer hover:scale-110 hover:fill-red-400"
+									/>
 								)}
 							</div>
 
