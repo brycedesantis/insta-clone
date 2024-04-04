@@ -1,14 +1,17 @@
+import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import Postfooter from "./Postfooter";
 import Postheader from "./Postheader";
 
-export default function Feedpost({ img, username }) {
+export default function Feedpost({ post }) {
+	const { isLoading, userProfile } = useGetUserProfileById(post.createdBy);
+
 	return (
 		<>
-			<Postheader username={username} img={img} />
+			<Postheader post={post} createdBy={userProfile} />
 			<div className="rounded overflow-hidden">
-				<img src={img} alt={`${username}'s picture`} />
+				<img src={post.imageURL} alt={`${post.username}'s picture`} />
 			</div>
-			<Postfooter username={username} />
+			<Postfooter post={post} createdBy={userProfile} />
 		</>
 	);
 }
