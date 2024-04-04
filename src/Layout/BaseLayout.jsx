@@ -14,7 +14,7 @@ export default function BaseLayout({ children }) {
 		<div className={"flex " + (renderNavbar ? "flex-col" : "flex-row")}>
 			{/* Sidebar */}
 			{renderSidebar ? (
-				<div className="w-[70px] xl:w-60">
+				<div className="w-[70px] xl:w-60 z-50">
 					<Sidebar />
 				</div>
 			) : null}

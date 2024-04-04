@@ -2,7 +2,13 @@ import { BsTrash } from "react-icons/bs";
 import Comment from "../Comments/Comment";
 import Postfooter from "../FeedComponents/Postfooter";
 
-export default function ProfileModal({ isOpen, onClose, img }) {
+export default function ProfileModal({
+	isOpen,
+	onClose,
+	post,
+	userProfile,
+	loginUser,
+}) {
 	if (!isOpen) return null;
 
 	const handleClose = (e) => {
@@ -28,7 +34,7 @@ export default function ProfileModal({ isOpen, onClose, img }) {
 						<div className="overflow-hidden flex-1">
 							<img
 								className="size-full aspect-square object-cover"
-								src={img}
+								src={post.imageURL}
 								alt=""
 							/>
 						</div>
@@ -38,12 +44,16 @@ export default function ProfileModal({ isOpen, onClose, img }) {
 								<div className="flex items-center gap-3">
 									<img
 										className="size-9 rounded-full object-cover"
-										src="./profilepic.png"
+										src={userProfile.profilePicture}
 										alt=""
 									/>
-									<h1 className="text-sm font-semibold">brycedesant</h1>
+									<h1 className="text-sm font-semibold">
+										{userProfile.username}
+									</h1>
 								</div>
-								<BsTrash className=" cursor-pointer hover:scale-110 hover:fill-red-400" />
+								{loginUser?.userId === userProfile.userId && (
+									<BsTrash className=" cursor-pointer hover:scale-110 hover:fill-red-400" />
+								)}
 							</div>
 
 							<div className="hidden md:flex max-h-[535px] my-8 flex-col gap-4 items-start overflow-y-auto">
@@ -58,66 +68,6 @@ export default function ProfileModal({ isOpen, onClose, img }) {
 									img="./luis-villasmil-unsplash.jpg"
 									comment="Amazing photo!"
 									createdDate="2w"
-								/>
-								<Comment
-									username="arya-dubey"
-									img="./arya-dubey-unsplash.jpg"
-									comment="Miss you!"
-									createdDate="10h"
-								/>
-								<Comment
-									username="ayo-ogunseinde"
-									img="./ayo-ogunseinde-unsplash.jpg"
-									comment="Great work!"
-									createdDate="10w"
-								/>
-								<Comment
-									username="luisvillasmil"
-									img="./luis-villasmil-unsplash.jpg"
-									comment="Amazing photo!"
-									createdDate="2w"
-								/>
-								<Comment
-									username="arya-dubey"
-									img="./arya-dubey-unsplash.jpg"
-									comment="Miss you!"
-									createdDate="10h"
-								/>
-								<Comment
-									username="ayo-ogunseinde"
-									img="./ayo-ogunseinde-unsplash.jpg"
-									comment="Great work!"
-									createdDate="10w"
-								/>
-								<Comment
-									username="luisvillasmil"
-									img="./luis-villasmil-unsplash.jpg"
-									comment="Amazing photo!"
-									createdDate="2w"
-								/>
-								<Comment
-									username="arya-dubey"
-									img="./arya-dubey-unsplash.jpg"
-									comment="Miss you!"
-									createdDate="10h"
-								/>
-								<Comment
-									username="ayo-ogunseinde"
-									img="./ayo-ogunseinde-unsplash.jpg"
-									comment="Great work!"
-									createdDate="10w"
-								/>
-								<Comment
-									username="luisvillasmil"
-									img="./luis-villasmil-unsplash.jpg"
-									comment="Amazing photo!"
-									createdDate="2w"
-								/>
-								<Comment
-									username="arya-dubey"
-									img="./arya-dubey-unsplash.jpg"
-									comment="Miss you!"
-									createdDate="10h"
 								/>
 							</div>
 
