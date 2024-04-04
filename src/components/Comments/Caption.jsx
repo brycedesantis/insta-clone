@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import { timeAgo } from "../../utils/timeAgo";
+import useUserProfileStore from "../../store/userProfileStore";
 
-export default function Comment({ comment }) {
-	const { isLoading, userProfile } = useGetUserProfileById(comment.createdBy);
+const Caption = ({ post }) => {
+	const userProfile = useUserProfileStore((state) => state.userProfile);
 
 	return (
 		<>
@@ -22,13 +22,13 @@ export default function Comment({ comment }) {
 								{userProfile.username}
 							</h1>
 						</Link>
-						<p className="text-sm">{comment.comment}</p>
+						<p className="text-sm">{post.caption}</p>
 					</div>
-					<div className="text-gray-400 text-xs">
-						{timeAgo(comment.createdAt)}
-					</div>
+					<div className="text-gray-400 text-xs">{timeAgo(post.createdAt)}</div>
 				</div>
 			</div>
 		</>
 	);
-}
+};
+
+export default Caption;

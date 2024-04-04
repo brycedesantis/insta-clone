@@ -7,6 +7,7 @@ import { firestore, storage } from "../../firebase/firebase";
 import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import usePostStore from "../../store/postStore";
 import useUserProfileStore from "../../store/userProfileStore";
+import Caption from "../Comments/Caption";
 
 export default function ProfileModal({
 	isOpen,
@@ -92,22 +93,17 @@ export default function ProfileModal({
 							</div>
 
 							<div className="hidden md:flex max-h-[535px] my-8 flex-col gap-4 items-start overflow-y-auto">
-								<Comment
-									username="ayo-ogunseinde"
-									img="./ayo-ogunseinde-unsplash.jpg"
-									comment="Great work!"
-									createdDate="10w"
-								/>
-								<Comment
-									username="luisvillasmil"
-									img="./luis-villasmil-unsplash.jpg"
-									comment="Amazing photo!"
-									createdDate="2w"
-								/>
+								{/* Caption */}
+								{post.caption && <Caption post={post} />}
+
+								{/* Comments */}
+								{post.comments.map((comment) => (
+									<Comment key={comment.id} comment={comment} />
+								))}
 							</div>
 
 							<div className="mt-auto">
-								<Postfooter profilePage={true} />
+								<Postfooter post={post} profilePage={true} />
 							</div>
 						</div>
 					</div>
