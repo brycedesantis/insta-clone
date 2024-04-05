@@ -18,6 +18,7 @@ const useCreatePost = () => {
 	const loginUser = useLoginStore((state) => state.user);
 	const createPost = usePostStore((state) => state.createPost);
 	const addPost = useUserProfileStore((state) => state.addPost);
+	const userProfile = useUserProfileStore((state) => state.userProfile);
 	const { pathname } = useLocation();
 
 	const handleCreatePost = async (selectedFile, caption) => {
@@ -43,8 +44,11 @@ const useCreatePost = () => {
 
 			newPost.imageURL = downloadUrl;
 
-			createPost({ ...newPost, id: postDocRef.id });
-			addPost({ ...newPost, id: postDocRef.id });
+			if (userProfile.userId === loginUser.userId)
+				createPost({ ...newPost, id: postDocRef.id });
+
+			if (pathname !== "/" && userProfile.userId === loginUser.userId)
+				addPost({ ...newPost, id: postDocRef.id });
 		} catch (error) {
 			console.log(error);
 		} finally {

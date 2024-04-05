@@ -9,6 +9,8 @@ import { AiOutlineLoading } from "react-icons/ai";
 import useLoginStore from "../../store/loginStore";
 import useLikePost from "../../hooks/useLikePost";
 import { timeAgo } from "../../utils/timeAgo";
+import ProfileModal from "../Modal/ProfileModal";
+import { Link } from "react-router-dom";
 
 export default function Postfooter({ post, profilePage, createdBy }) {
 	const { handlePostComment, isCommenting } = usePostComment();
@@ -16,6 +18,7 @@ export default function Postfooter({ post, profilePage, createdBy }) {
 	const loginUser = useLoginStore((state) => state.user);
 	const commentRef = useRef(null);
 	const { handleLikePost, isLiked, likes } = useLikePost(post);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const handleSubmitComment = async () => {
 		await handlePostComment(post.id, comment);
@@ -48,16 +51,27 @@ export default function Postfooter({ post, profilePage, createdBy }) {
 				{!profilePage && (
 					<>
 						<p className="text-xs font-bold cursor-pointer">
-							{createdBy?.username}
+							<Link to={`/${createdBy.username}`}>{createdBy?.username}</Link>
 							<span className="font-normal pl-1 cursor-auto">
 								{post.caption}
 							</span>
 						</p>
 						{post.comments.length > 0 && (
-							<p className="text-sm text-gray-400 cursor-pointer w-fit">
+							<p
+								onClick={() => setIsOpen(true)}
+								className="text-sm text-gray-400 cursor-pointer w-fit"
+							>
 								View all {post.comments.length} comments
 							</p>
 						)}
+
+						<ProfileModal
+							loginUser={loginUser}
+							userProfile={createdBy}
+							post={post}
+							isOpen={isOpen}
+							onClose={() => setIsOpen(false)}
+						/>
 					</>
 				)}
 

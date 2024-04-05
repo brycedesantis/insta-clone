@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useFollowAndUnfollowUser from "../../hooks/useFollowAndUnfollowUser";
 import useLoginStore from "../../store/loginStore";
 
@@ -22,13 +23,17 @@ export default function SuggestedUser({ user, inSearch, setUser }) {
 	return (
 		<div className="py-4 flex justify-between">
 			<div className="flex items-center gap-3">
-				<img
-					className="size-10 rounded-full object-cover"
-					src={user.profilePicture}
-					alt={`${user.fullName}'s profile picture`}
-				/>
+				<Link to={`/${user.username}`}>
+					<img
+						className="size-10 rounded-full object-cover"
+						src={user.profilePicture}
+						alt={`${user.fullName}'s profile picture`}
+					/>
+				</Link>
 				<div className="flex flex-col justify-center align-middle">
-					<p className="font-bold">{user.username}</p>
+					<Link to={`/${user.username}`}>
+						<p className="font-bold">{user.username}</p>
+					</Link>
 					{inSearch ? (
 						<p className="text-gray-400 text-xs">
 							{user.followers.length} Followers
