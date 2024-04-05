@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { firestore, storage } from "../firebase/firebase";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { toast } from "react-hot-toast";
 
 const useCreatePost = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,7 @@ const useCreatePost = () => {
 
 	const handleCreatePost = async (selectedFile, caption) => {
 		if (isLoading) return;
-		if (!selectedFile) throw new Error("Please select an image");
+		if (!selectedFile) return toast.error("Please select an image");
 		setIsLoading(true);
 		const newPost = {
 			caption: caption,
@@ -49,8 +50,10 @@ const useCreatePost = () => {
 
 			if (pathname !== "/" && userProfile.userId === loginUser.userId)
 				addPost({ ...newPost, id: postDocRef.id });
+
+			toast.success("Your post has been created!");
 		} catch (error) {
-			console.log(error);
+			return toast.error(error);
 		} finally {
 			setIsLoading(false);
 		}

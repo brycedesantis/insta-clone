@@ -2,16 +2,19 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, firestore } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import useLoginStore from "../store/loginStore";
+import { useState } from "react";
 
 export default function useLogin() {
 	const [signInWithEmailAndPassword, loading, error] =
 		useSignInWithEmailAndPassword(auth);
 	const loginUser = useLoginStore((state) => state.login);
+	const [errorMsg, setErrorMsg] = useState(null);
 
 	const login = async (inputs) => {
+		setErrorMsg(null);
 		try {
 			if (!inputs.email || !inputs.password) {
-				throw new Error("Please fill out all fields");
+				setErrorMsg("Please fill out all fields");
 			}
 
 			const userCred = await signInWithEmailAndPassword(
@@ -26,9 +29,9 @@ export default function useLogin() {
 				loginUser(docSnap.data());
 			}
 		} catch (error) {
-			console.log(error.message);
+			setErrorMsg(error);
 		}
 	};
 
-	return { login, loading, error };
+	return { login, loading, error, errorMsg };
 }

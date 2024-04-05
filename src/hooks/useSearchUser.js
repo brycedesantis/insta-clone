@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useState } from "react";
 import { firestore } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const useSearchUser = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +22,7 @@ const useSearchUser = () => {
 				setUser(doc.data());
 			});
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 			setUser(null);
 		} finally {
 			setIsLoading(false);

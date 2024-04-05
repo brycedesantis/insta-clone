@@ -9,6 +9,7 @@ import {
 	where,
 } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const useGetSuggestedUsers = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +37,7 @@ const useGetSuggestedUsers = () => {
 
 				setSuggestedUsers(users);
 			} catch (error) {
-				console.log(error);
+				toast.error(error);
 			} finally {
 				setIsLoading(false);
 			}

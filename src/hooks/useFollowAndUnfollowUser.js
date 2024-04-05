@@ -3,6 +3,7 @@ import useLoginStore from "../store/loginStore";
 import useUserProfileStore from "../store/userProfileStore";
 import { firestore } from "../firebase/firebase";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { toast } from "react-hot-toast";
 
 const useFollowAndUnfollowUser = (userId) => {
 	const [isUpdating, setIsUpdating] = useState(false);
@@ -73,7 +74,7 @@ const useFollowAndUnfollowUser = (userId) => {
 				setIsFollowing(true);
 			}
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 		} finally {
 			setIsUpdating(false);
 		}

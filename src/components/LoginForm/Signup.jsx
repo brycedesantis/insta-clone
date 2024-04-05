@@ -12,7 +12,7 @@ export default function Signup() {
 		email: "",
 		password: "",
 	});
-	const { loading, error, signup } = useSignUpWithEmailAndPassword();
+	const { loading, signup, errorMsg } = useSignUpWithEmailAndPassword();
 
 	return (
 		<>
@@ -67,10 +67,10 @@ export default function Signup() {
 				</span>
 			</div>
 
-			{error && (
+			{errorMsg && (
 				<div className="bg-red-100 flex items-center">
 					<BiErrorCircle className="fill-red-300 size-9 mx-1" />
-					<div className=" p-2">{error.message}</div>
+					<div className=" p-2">{errorMsg}</div>
 				</div>
 			)}
 

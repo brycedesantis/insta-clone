@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase";
 import Navbar from "../components/Navbar/Navbar";
+import { Toaster } from "react-hot-toast";
 
 export default function BaseLayout({ children }) {
 	const { pathname } = useLocation();
@@ -12,6 +13,13 @@ export default function BaseLayout({ children }) {
 
 	return (
 		<div className={"flex " + (renderNavbar ? "flex-col" : "flex-row")}>
+			<Toaster
+				position="bottom-center"
+				toastOptions={{
+					error: { style: { background: "#fb7185" } },
+					success: { style: { background: "#d9f99d" } },
+				}}
+			/>
 			{/* Sidebar */}
 			{renderSidebar ? (
 				<div className="w-[70px] xl:w-60 z-50">

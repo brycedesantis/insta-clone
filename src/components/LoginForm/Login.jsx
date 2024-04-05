@@ -8,7 +8,7 @@ export default function Login() {
 		email: "",
 		password: "",
 	});
-	const { loading, login, error } = useLogin();
+	const { loading, login, errorMsg } = useLogin();
 
 	return (
 		<>
@@ -31,10 +31,10 @@ export default function Login() {
 				onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 			/>
 
-			{error && (
+			{errorMsg && (
 				<div className="bg-red-100 flex items-center">
 					<BiErrorCircle className="fill-red-300 size-9 mx-1" />
-					<div className="p-2">{error.message}</div>
+					<div className="p-2">{errorMsg}</div>
 				</div>
 			)}
 

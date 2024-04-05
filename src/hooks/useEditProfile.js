@@ -4,6 +4,7 @@ import { firestore, storage } from "../firebase/firebase";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
 import useUserProfileStore from "../store/userProfileStore";
+import { toast } from "react-hot-toast";
 
 export default function useEditProfile() {
 	const [isUpdating, setIsUpdating] = useState(false);
@@ -37,8 +38,10 @@ export default function useEditProfile() {
 			localStorage.setItem("userInfo", JSON.stringify(updateUser));
 			setLoginUser(updateUser);
 			setUserProfile(updateUser);
+
+			toast.success("Profile updated successfully");
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 		}
 	};
 

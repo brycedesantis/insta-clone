@@ -9,16 +9,19 @@ import {
 	where,
 } from "firebase/firestore";
 import useLoginStore from "../store/loginStore";
+import { useState } from "react";
 
 export default function useSignUpWithEmailAndPassword() {
 	const [createUserWithEmailAndPassword, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 	const loginUser = useLoginStore((state) => state.login);
+	const [errorMsg, setErrorMsg] = useState(null);
 
 	const signup = async (inputs) => {
 		const userRef = collection(firestore, "users");
 		const userQuery = query(userRef, where("username", "==", inputs.username));
 		const querySnapshot = await getDocs(userQuery);
+		setErrorMsg(null);
 
 		try {
 			const newUser = await createUserWithEmailAndPassword(
@@ -32,15 +35,15 @@ export default function useSignUpWithEmailAndPassword() {
 				!inputs.username ||
 				!inputs.password
 			) {
-				throw new Error("Please fill out all fields");
+				setErrorMsg("Please fill out all fields");
 			}
 
 			if (!querySnapshot.empty) {
-				throw new Error("Username already exists");
+				setErrorMsg("Username already exists");
 			}
 
 			if (!newUser && error) {
-				throw new Error(error);
+				setErrorMsg(error);
 			}
 
 			if (newUser) {
@@ -62,9 +65,9 @@ export default function useSignUpWithEmailAndPassword() {
 				loginUser(userInfo);
 			}
 		} catch (error) {
-			console.log(error);
+			setErrorMsg(error);
 		}
 	};
 
-	return { loading, error, signup };
+	return { loading, error, signup, errorMsg };
 }

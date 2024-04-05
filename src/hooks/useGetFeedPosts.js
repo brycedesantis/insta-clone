@@ -4,6 +4,7 @@ import useLoginStore from "../store/loginStore";
 import useUserProfileStore from "../store/userProfileStore";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const useGetFeedPosts = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +37,7 @@ const useGetFeedPosts = () => {
 				feedPosts.sort((a, b) => b.createdAt - a.createdAt);
 				setPosts(feedPosts);
 			} catch (error) {
-				console.log(error);
+				toast.error(error);
 			} finally {
 				setIsLoading(false);
 			}

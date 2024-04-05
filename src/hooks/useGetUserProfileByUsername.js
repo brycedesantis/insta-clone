@@ -2,6 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/firebase";
 import useUserProfileStore from "../store/userProfileStore";
+import { toast } from "react-hot-toast";
 
 const useGetUserProfileByUsername = (username) => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -25,9 +26,8 @@ const useGetUserProfileByUsername = (username) => {
 				});
 
 				setUserProfile(userDoc);
-				console.log(userDoc);
 			} catch (error) {
-				console.log(error);
+				toast.error(error);
 			} finally {
 				setIsLoading(false);
 			}

@@ -8,6 +8,7 @@ import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import usePostStore from "../../store/postStore";
 import useUserProfileStore from "../../store/userProfileStore";
 import Caption from "../Comments/Caption";
+import { toast } from "react-hot-toast";
 
 export default function ProfileModal({
 	isOpen,
@@ -25,6 +26,7 @@ export default function ProfileModal({
 	const handleClose = (e) => {
 		if (e.target.id === "wrapper") onClose();
 	};
+	console.log;
 
 	const handleDeletePost = async () => {
 		if (!window.confirm("Are you sure you want to delete this post?")) return;
@@ -41,8 +43,9 @@ export default function ProfileModal({
 
 			deletePost(post.id);
 			lowerPostCount(post.id);
+			toast.success("Post successfully deleted");
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 		} finally {
 			setIsDeleting(false);
 		}

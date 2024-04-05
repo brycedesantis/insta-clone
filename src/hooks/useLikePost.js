@@ -2,6 +2,7 @@ import { useState } from "react";
 import useLoginStore from "../store/loginStore";
 import { firestore } from "../firebase/firebase";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { toast } from "react-hot-toast";
 
 const useLikePost = (post) => {
 	const [isLiking, setIsLiking] = useState(false);
@@ -26,7 +27,7 @@ const useLikePost = (post) => {
 			setIsLiked(!isLiked);
 			isLiked ? setLikes(likes - 1) : setLikes(likes + 1);
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 		} finally {
 			setIsLiking(false);
 		}

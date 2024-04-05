@@ -3,6 +3,7 @@ import useLoginStore from "../store/loginStore";
 import usePostStore from "../store/postStore";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const usePostComment = () => {
 	const [isCommenting, setIsCommenting] = useState(false);
@@ -11,6 +12,7 @@ const usePostComment = () => {
 
 	const handlePostComment = async (postId, comment) => {
 		if (isCommenting) return;
+		if (!loginUser) return toast.error("You must be logged in to comment");
 		setIsCommenting(true);
 		const newComment = {
 			comment,
@@ -25,7 +27,7 @@ const usePostComment = () => {
 			});
 			addComment(postId, newComment);
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 		} finally {
 			setIsCommenting(false);
 		}

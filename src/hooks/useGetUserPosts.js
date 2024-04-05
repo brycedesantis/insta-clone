@@ -3,6 +3,7 @@ import usePostStore from "../store/postStore";
 import useUserProfileStore from "../store/userProfileStore";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const useGetUserPosts = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +31,7 @@ const useGetUserPosts = () => {
 				posts.sort((a, b) => b.createdAt - a.createdAt);
 				setPosts(posts);
 			} catch (error) {
-				console.log(error);
+				toast.error(error);
 				setPosts([]);
 			} finally {
 				setIsLoading(false);

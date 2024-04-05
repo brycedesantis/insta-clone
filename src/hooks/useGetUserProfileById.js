@@ -1,6 +1,7 @@
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const useGetUserProfileById = (userId) => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +17,7 @@ const useGetUserProfileById = (userId) => {
 					setUserProfile(userRef.data());
 				}
 			} catch (error) {
-				console.log(error);
+				toast.error(error);
 			} finally {
 				setIsLoading(false);
 			}

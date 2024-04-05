@@ -1,6 +1,7 @@
 import { useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase";
 import useLoginStore from "../store/loginStore";
+import { toast } from "react-hot-toast";
 
 export default function useLogout() {
 	const [signOut, isLoggingOut, error] = useSignOut(auth);
@@ -12,7 +13,7 @@ export default function useLogout() {
 			localStorage.removeItem("userInfo");
 			logoutUser();
 		} catch (error) {
-			console.log(error);
+			toast.error(error);
 		}
 	};
 
